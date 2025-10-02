@@ -46,7 +46,7 @@
  - Bestleistung: 'avg100 = 425' um Episode 300
 
    
-<img width="964" height="600" alt="Screenshot (597)" src="https://github.com/user-attachments/assets/f227ecb8-1f38-4234-8ec4-575ee4358fb1" />
+<img width="964" height="800" alt="Screenshot (597)" src="https://github.com/user-attachments/assets/f227ecb8-1f38-4234-8ec4-575ee4358fb1" />
 
 
 - Danach Leitungsabfall -> vermutlich **Overfitting** oder zu aggressiver ## **Lernraten-/Epsilon-Decay**
@@ -57,7 +57,7 @@
 - Modell über 10 Episoden getestet -> Score konstant **500.0**
 
 
-<img width="919" height="600" alt="Screenshot (612)" src="https://github.com/user-attachments/assets/700443e1-466e-45b2-8010-99d044d4e8b7" />
+<img width="919" height="800" alt="Screenshot (612)" src="https://github.com/user-attachments/assets/700443e1-466e-45b2-8010-99d044d4e8b7" />
 
 
 ## **Nächste Schritte**
