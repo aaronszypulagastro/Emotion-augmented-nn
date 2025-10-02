@@ -1,0 +1,4 @@
+# VS & Cache 
+.vs/
+__pycache__/
+*.pyc
