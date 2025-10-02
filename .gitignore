@@ -2,3 +2,9 @@
 .vs/
 __pycache__/
 *.pyc
+
+# Alle Checkpoints ignorieren 
+*.pth
+
+# Ausnahme: nur das finale Modell behalten 
+!dqn_cartpole_final.pth
