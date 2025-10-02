@@ -70,7 +70,8 @@
         3. **Training mit mehreren Emotionen** (z. B. Freude, Wut, Angst, Trauer)
     - Erste Architektur ausprobieren (CNN_Baseline für EMotionsbilder)
     - **Aspekt imaginären Wettbewerb** einbindne("Winner-Mentalität")
-- Langfristig:
+      
+- **Langfristig:**
     - Vergleich verschiedener Modelle (CNN vs Transformer)
     - Kombination mti Reinforcement LEarning -> Emotion als zusätzlicher INputfaktor
     - Dokumentation fortführen (Experimente mit Logs + Plots wie heute) 
