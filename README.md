@@ -26,32 +26,32 @@ Layers im Modell:
 - **Output Layer:** konkrete Aktionen
 
 # Projektplan 
-[x]**Phase 1 - Setup** 
+**Phase 1 - Setup** 
 
 - [x] Erste Skizzen, Grundstruktur anlegen
 
-[x]**Phase 2 -  Basis_Agent**
+**Phase 2 -  Basis_Agent**
 
-- [x]RL-Agent in CartPole-v1 (PyTorch + Gymnasium) 
-- [x]Replay Buffer & Training implementieren
+- [x] RL-Agent in CartPole-v1 (PyTorch + Gymnasium) 
+- [x] Replay Buffer & Training implementieren
 
-[ ]**Phase 3 - Emotion**
+**Phase 3 - Emotion**
 
 - [ ]Emotion-Tagging für Erfahurngen 
 - [ ]Gewichtung im Replay BUffer
 - [ ]Vergleich: Klassisch vs Emotion
 
-[ ]**Phase 4 - Motivation**
+**Phase 4 - Motivation**
 
 - [ ]"Imaginärer Gegner" als Baseline 
 - [ ]Motivation = Differenz eigener Reward - Gegner-Reward
 
-[ ]**Phase 5 - Persönlichkeit**
+**Phase 5 - Persönlichkeit**
 
 - [ ]Parameter für Lernstil (Winner, vorsichtig, kooperativ) 
 - [ ]Experimente mit verschiedenen Stilen 
 
-[ ]**Phase 6 - Visualisierung**
+**Phase 6 - Visualisierung**
 
 - [ ]Lernkurvern vergleichen 
 - [ ]Unterschiedliche PErsönlichkeiten plotten 
