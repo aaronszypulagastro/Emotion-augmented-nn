@@ -26,14 +26,14 @@ Layers im Modell:
 - **Output Layer:** konkrete Aktionen
 
 # Projektplan 
-[ ]**Phase 1 - Setup** 
+[x]**Phase 1 - Setup** 
 
-- [ ]Erste Skizzen, Grundstruktur anlegen
+- [x] Erste Skizzen, Grundstruktur anlegen
 
-[ ]**Phase 2 -  Basis_Agent**
+[x]**Phase 2 -  Basis_Agent**
 
-- [ ]RL-Agent in CartPole-v1 (PyTorch + Gymnasium) 
-- [ ]Replay Buffer & Training implementieren
+- [x]RL-Agent in CartPole-v1 (PyTorch + Gymnasium) 
+- [x]Replay Buffer & Training implementieren
 
 [ ]**Phase 3 - Emotion**
 
