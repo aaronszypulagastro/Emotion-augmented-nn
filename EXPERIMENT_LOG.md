@@ -61,7 +61,7 @@
 
 
 ## **Nächste Schritte**
-- **BASELINE ABGESCHLOSSEN:** CartPole-DQN funktioniert stabil -> als Referenzmodell behalten
+- [x] **BASELINE ABGESCHLOSSEN:** CartPole-DQN funktioniert stabil -> als Referenzmodell behalten
 - **Übergang zum eigentlichen Projekt: Emotion-NN**
     - Datensätze vorbereiten (Emotion Recognition, z. B. Bilder / Audio / Text)
     - Pipeline aufbauen:
