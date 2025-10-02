@@ -10,7 +10,7 @@
 - Batch Size: 64
 - Target NEtwork alle 100 Schritte aktualisiert (hard update)
 
-**Ergebnisse:**
+## **Ergebnisse:**
 - Training über 2500 Episoden
 - Durchschnitts-Score schwankte stark zwischen 20-100
 - Modell sehr instabil, keine konsistente Lösung von CartPOle
@@ -19,7 +19,7 @@
 
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f2174e36-1460-4c2e-98d9-23536c99a9ae" />
 
-**Notizen:**
+## **Notizen:**
 - Erste Tests zeigen, dass Replay Buffer zu klein sein könnte
 - Exploration zu langsam abgebaut - Agent bleibt lange "zufällig"
 
@@ -37,10 +37,44 @@
 - GRadient Clipping ('max_norm=10')
 - AdamW Optimizer statt Adam
 
+ ## **Training** 
+ 
+ <img width="1920" height="1080" alt="Screenshot (599)" src="https://github.com/user-attachments/assets/5f50693a-576e-47de-b028-ab6b00c00b61" />
 
 
+ - 600 Episoden abgeschlossen
+ - Bestleistung: 'avg100 = 425' um Episode 300
+
+   
+<img width="964" height="600" alt="Screenshot (597)" src="https://github.com/user-attachments/assets/f227ecb8-1f38-4234-8ec4-575ee4358fb1" />
 
 
+- Danach Leitungsabfall -> vermutlich **Overfitting** oder zu aggressiver ## **Lernraten-/Epsilon-Decay**
+- Finale Phase: Modell stabilisiert sich wieder auf 500 Punkte
+
+
+## **Evaluation** 
+- Modell über 10 Episoden getestet -> Score konstant **500.0**
+
+
+<img width="919" height="600" alt="Screenshot (612)" src="https://github.com/user-attachments/assets/700443e1-466e-45b2-8010-99d044d4e8b7" />
+
+
+## **Nächste Schritte**
+- **BASELINE ABGESCHLOSSEN:** CartPole-DQN funktioniert stabil -> als Referenzmodell behalten
+- **Übergang zum eigentlichen Projekt: Emotion-NN**
+    - Datensätze vorbereiten (Emotion Recognition, z. B. Bilder / Audio / Text)
+    - Pipeline aufbauen:
+        1. **Preprocessing** (Normalisierung, Augmentierung, Label-Encoding)
+        2. **Feature Extraction** (CNN für Bilder, evtl. RNN/Transformer für Audio/TExt
+        3. **Training mit mehreren Emotionen** (z. B. Freude, Wut, Angst, Trauer)
+    - Erste Architektur ausprobieren (CNN_Baseline für EMotionsbilder)
+    - **Aspekt imaginären Wettbewerb** einbindne("Winner-Mentalität")
+- Langfristig:
+    - Vergleich verschiedener Modelle (CNN vs Transformer)
+    - Kombination mti Reinforcement LEarning -> Emotion als zusätzlicher INputfaktor
+    - Dokumentation fortführen (Experimente mit Logs + Plots wie heute) 
+ 
 
 
 
