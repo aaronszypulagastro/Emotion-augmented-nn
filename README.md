@@ -37,9 +37,9 @@ Layers im Modell:
 
 **Phase 3 - Emotion**
 
-- [ ]Emotion-Tagging für Erfahurngen 
-- [ ]Gewichtung im Replay BUffer
-- [ ]Vergleich: Klassisch vs Emotion
+- [x] Emotion-Tagging für Erfahurngen 
+- [x] Gewichtung im Replay BUffer
+- [x] Vergleich: Klassisch vs Emotion
 
 **Phase 4 - Motivation**
 
