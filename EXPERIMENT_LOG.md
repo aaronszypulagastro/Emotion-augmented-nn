@@ -62,21 +62,48 @@ Erste Stabilisierung des Agenten
 <img width="919" height="800" alt="Screenshot (612)" src="https://github.com/user-attachments/assets/700443e1-466e-45b2-8010-99d044d4e8b7" />
 
 
-## **Nächste Schritte**
+-------------------------------------------------------------------------------------------------
 - [x] **BASELINE ABGESCHLOSSEN:** CartPole-DQN funktioniert stabil -> als Referenzmodell behalten
-- **Übergang zum eigentlichen Projekt: Emotion-NN**
-    - Datensätze vorbereiten (Emotion Recognition, z. B. Bilder / Audio / Text)
-    - Pipeline aufbauen:
-        1. **Preprocessing** (Normalisierung, Augmentierung, Label-Encoding)
-        2. **Feature Extraction** (CNN für Bilder, evtl. RNN/Transformer für Audio/TExt
-        3. **Training mit mehreren Emotionen** (z. B. Freude, Wut, Angst, Trauer)
-    - Erste Architektur ausprobieren (CNN_Baseline für EMotionsbilder)
-    - **Aspekt imaginären Wettbewerb** einbindne("Winner-Mentalität")
+-------------------------------------------------------------------------------------------------
       
 - **Langfristig:**
     - Vergleich verschiedener Modelle (CNN vs Transformer)
     - Kombination mti Reinforcement LEarning -> Emotion als zusätzlicher INputfaktor
-    - Dokumentation fortführen (Experimente mit Logs + Plots wie heute) 
+    - Dokumentation fortführen (Experimente mit Logs + Plots wie heute)
+
+## 2025-10-03
+## **Ziel:**
+Vergleich zweier DQN-LÄufe (mit und ohne Emotionseinfluss) zur Untersuchung der Auswirkungen emotionaler Modulation auf Lernstabilität, Explorationsverhalten und Leistung. 
+
+**---**
+
+## Versuchsaufbau
+- **Baseling:** Standard-DQN (ohne Emotionseinfluss)
+- **EMotion-Version:** DQN mit integriertem Emotionsfaktor (EmotionENginge v1)
+- **Umgebung:** 'CartPole-v1'
+- **Parameter:**ε_eff)
+    - ε_decay = 0.999
+    - emotion_range = 0.5 - 0.9
+    - reward_clipping = aktiv
+    - Replay-Buffer: 50k
+    - Batchsize: 64
+
+**Zielmetriken:** Return, gleitender Durchschnitt, Emotion_Level, Exploration (ε_eff)
+
+**---**
+## Beobachtung 
+bild einfügen 
+
+- Der emotionale Agent zeigt ausgeprägtere Explorationsphasen und reagiert adaptiver auf kurzfristige Leistungsschwankungen
+- Emotionale Peaks korrelieren mit temporären Leistungsanstiegen
+- Der Baseline-Agent bleibt stabiler, verliert aber an Flexibilität im späteren Verlauf  
+- Gesamtergebnis: Emotionseinfluss erzeugt höhere Varianz, gleichzeitig jedoch mehr Lernimpulse in stagnierenden Phasen
+
+## Interpretation 
+- Emotionale Modulation kann Stagnation im Training reduzieren und Exploration länger aufrechterhalten
+- Allerdings erfordert sie ein Feintuning der Kopplung (zu starke Emotion = Überexploration)
+- Emotion wirkt als dynamischer Verstärker, aber kein konstanter Performance-Garant
+- Potenzial für „EmotionEngine v2“: adaptive Lernrate + gewichtete Emotion-Einbindung  
  
 
 
