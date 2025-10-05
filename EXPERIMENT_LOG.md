@@ -27,7 +27,8 @@ Basis-DQN implementieren & erstes Training starten
 **---**
 
 ## 2025-10-02
-**Ziel:** Erste Stabilisierung des Agenten 
+## **Ziel:** 
+Erste Stabilisierung des Agenten 
 **Änderungen:**
 - Replay Buffer Kapazität auf 100.000 gesetzt
 - Batch Size von 64 auf 128 erhöht
