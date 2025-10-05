@@ -2,7 +2,8 @@
 
 **Dieses Dokument protokolliert die täglichen Änderungen, Experimnente und Ergebnisse des Projekts.*
 ## 2025-10-01
-**ZIel:** Basis-DQN implementieren & erstes Training starten 
+## **ZIel:** 
+Basis-DQN implementieren & erstes Training starten 
 **Änderungen:** 
 - DQN Agent mit Replay Buffer und Epsilon-Greedy Strategie erstellt
 - REplay BUffer Kapazität: 50.000
