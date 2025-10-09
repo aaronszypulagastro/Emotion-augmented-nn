@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 import gymnasium as gym
 import torch
 import numpy as np
-from src.agent import DQNAgent  # Agenten importieren
+from agent import DQNAgent  # Agenten importieren
+from emotion_engine import EmotionEngine
 
-def evaluate_and_plot(model_path='dqn_cartpole_final.pth', episodes=10, render=False):
+def evaluate_and_plot(model_path='dqn_cartpole_best.pth', episodes=10, render=False):
     
 
     # Environment erstellen
@@ -18,10 +19,10 @@ def evaluate_and_plot(model_path='dqn_cartpole_final.pth', episodes=10, render=F
     action_dim = env.action_space.n
 
     # Agent erstellen
-    agent = DQNAgent(state_dim=state_dim, action_dim=action_dim, batch_size=128)
+    agent = DQNAgent(state_dim=state_dim, action_dim=action_dim)
 
     # Trainiertes Modell laden (z. B. das finale Modell)
-    agent.q_network.load_state_dict(torch.load("dqn_cartpole_final.pth", map_location=agent.device))
+    agent.q_network.load_state_dict(torch.load("dqn_cartpole_best.pth", map_location=agent.device))
     agent.q_network.eval()
     agent.epsilon = 0.0  # Kein Epsilon-Greedy mehr
 
@@ -102,8 +103,16 @@ def compare_models(model_paths, episodes=5, render=False):
     plt.ylabel("Durchschnittlicher Reward")
     plt.title("Modellvergleich")
     plt.savefig("compare_models.png")
+    plt.savefig("compare_models.png")
     plt.close()
 
     print('\nVergleich abgeschlossen - Ergebnisse in compare_models.png gespeichert.')
     return results
+
+if __name__ == '__main__': 
+    # Beispiel 1: NUr Ealuation eines MOdells
+    evaluate_and_plot(model_path = 'dqn_cartpole_best.pth', episodes=10, render=False)
+
+    # Beispiel 2: Vergleich mehrerer Modelle 
+    # compare_models(['dqn_cartpole_best.pth', 'dqn_cartpole_final.pth'], episodes=5)
    
