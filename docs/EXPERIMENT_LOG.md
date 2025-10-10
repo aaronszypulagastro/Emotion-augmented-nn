@@ -25,17 +25,64 @@
 
 **---**
 
-## 2025-10-02
-**Ziel:** Erste Stabilisierung des Agenten 
-**Änderungen:**
-- Replay Buffer Kapazität auf 100.000 gesetzt
-- Batch Size von 64 auf 128 erhöht
-- LEarning Rate von 1e-4 zu 5e-4
-- Soft Target-Update ('tau=0.01') eingeführt
-- Mehrfache Updates pro Schritt ('updates_per_step=2)
-- HUber-Loss statt MSELoss
-- GRadient Clipping ('max_norm=10')
-- AdamW Optimizer statt Adam
+# **2025-10-10 
+# **Aktueller Stand des EMotion DQN Projekts:** 
+**1. Modellstruktur:**
+- Q-Network besteht aus zwei PlasticLInear-Layern (BDH-Style) und einem linearen Output
+  
+- Jede Schicht besitzt eine σ-Matrix, die sich emotional moduliert anpasst:
+        **σij​←decay⋅σij​+η⋅mod⋅(tanh(posti​)⋅prej​)**
+
+- Diese σ-Aktivität wird im Training nach jeder Episode resettet → stabiler, aber evtl. zu kurzlebig.
+
+**2. Emotion-Engine:**
+- Hat einen Zustand state ∈ [0, 1], der:
+    - durch Rewards (TD-Error) im Training (update()) schnell reagiert,
+    - nach jeder Episode (update_after_episode()) eine langsamere Trendanpassung bekommt.
+
+- Unterstützt Winner/Loser-Mentality, NOise, Floor/Ceil-Grenzen
+
+- Der emotionale Zustand beeinflusst:
+    - Reward-Shaping
+    - Plastizität (mod-Gain)
+    - Exploration (ε-Shift)
+
+  **3. Trainingslogik:**
+  - Umgebung: CartPole-v1
+  - Reward wird um Emotion modifiziert (reward *= (0.8 + 0.4 * emotion)
+  - Nach jeder Episode: EmotionUpdate, BDH-Reset
+  - PLots erzeugen:
+    - emotion_vs_reward
+    - emotion_reward_correlation
+    - emotion_bdh_dynamics
+
+  # Verbesserungspotenziale
+  **1. Emotion-PLastizitäts-Kopplung:**
+  Der Modulator (mod = agent._emotion_gain()) beeinflusst σ, aber immer mit fixem η=1e-3
+
+  **Idee: dynamisches η basierend auf Emotion**
+
+  Ausagbe: Bei positiver EMotion höhere Lernrate (Hebbian Boost) , bei negativer weniger
+
+  **2. Emotion-Decay adaptiv**
+  Die Emotion bleibt akuell noch lange hoch, was Reward-Intstabilität erzeugen kann.
+
+  **Idee: self.state() ändern, Emotion dämpft sich stärker bei hohem TD-Error (unsicherem Lernen)
+
+  **3. σ-Reset weicher gestalten:**
+  Aktuell wird nach jeder Episode sigma.zero() aufgerufen - das komplette Vergessen.
+
+  **Idee: partielles Resetting**
+
+  Ausgabe: Erinnerung bleibt teilweise bestehen, biologisch realistischer
+
+  **4. Hyperparameter Sweep:**
+  Die aktuell fixierten Parameter könnten besser abgestimmt werden.
+
+  **5. Visualisierung erweitern**
+  
+
+
 
 
 
