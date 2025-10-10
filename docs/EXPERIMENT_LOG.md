@@ -67,7 +67,7 @@
   **2. Emotion-Decay adaptiv**
   Die Emotion bleibt akuell noch lange hoch, was Reward-Intstabilität erzeugen kann.
 
-  **Idee: self.state() ändern, Emotion dämpft sich stärker bei hohem TD-Error (unsicherem Lernen)
+  **Idee: self.state() ändern, Emotion dämpft sich stärker bei hohem TD-Error (unsicherem Lernen)**
 
   **3. σ-Reset weicher gestalten:**
   Aktuell wird nach jeder Episode sigma.zero() aufgerufen - das komplette Vergessen.
