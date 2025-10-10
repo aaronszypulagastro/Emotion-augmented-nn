@@ -25,7 +25,7 @@
 
 **---**
 
-# **2025-10-10 
+# 2025-10-10 
 # **Aktueller Stand des EMotion DQN Projekts:** 
 **1. Modellstruktur:**
 - Q-Network besteht aus zwei PlasticLInear-Layern (BDH-Style) und einem linearen Output
