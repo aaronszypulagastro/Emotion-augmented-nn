@@ -26,7 +26,7 @@
 **---**
 
 # 2025-10-10 
-# **Aktueller Stand des EMotion DQN Projekts:** 
+# **Aktueller Stand des Emotion DQN Projekts:** 
 **1. Modellstruktur:**
 - Q-Network besteht aus zwei PlasticLInear-Layern (BDH-Style) und einem linearen Output
   
@@ -56,36 +56,90 @@
     - emotion_reward_correlation
     - emotion_bdh_dynamics
 
-  # Verbesserungspotenziale
-  **1. Emotion-PLastizitäts-Kopplung:**
-  Der Modulator (mod = agent._emotion_gain()) beeinflusst σ, aber immer mit fixem η=1e-3
+# Verbesserungspotenziale
+~~**1. Emotion-PLastizitäts-Kopplung:**~~
+Der Modulator (mod = agent._emotion_gain()) beeinflusst σ, aber immer mit fixem η=1
 
-  **Idee: dynamisches η basierend auf Emotion**
+**Idee: dynamisches η basierend auf Emotion**
 
-  Ausagbe: Bei positiver EMotion höhere Lernrate (Hebbian Boost) , bei negativer weniger
+Ausagbe: Bei positiver EMotion höhere Lernrate (Hebbian Boost) , bei negativer weniger
 
-  **2. Emotion-Decay adaptiv**
-  Die Emotion bleibt akuell noch lange hoch, was Reward-Intstabilität erzeugen kann.
+~~**2. Emotion-Decay adaptiv**~~
+Die Emotion bleibt akuell noch lange hoch, was Reward-Intstabilität erzeugen kann.
 
-  **Idee: self.state() ändern, Emotion dämpft sich stärker bei hohem TD-Error (unsicherem Lernen)**
+**Idee: self.state() ändern, Emotion dämpft sich stärker bei hohem TD-Error (unsicherem Lernen)**
 
-  **3. σ-Reset weicher gestalten:**
-  Aktuell wird nach jeder Episode sigma.zero() aufgerufen - das komplette Vergessen.
+~~**3. σ-Reset weicher gestalten:**~~
+Aktuell wird nach jeder Episode sigma.zero() aufgerufen - das komplette Vergessen.
 
-  **Idee: partielles Resetting**
+**Idee: partielles Resetting**
 
-  Ausgabe: Erinnerung bleibt teilweise bestehen, biologisch realistischer
+Ausgabe: Erinnerung bleibt teilweise bestehen, biologisch realistischer
 
-  **4. Hyperparameter Sweep:**
-  Die aktuell fixierten Parameter könnten besser abgestimmt werden.
+~~**4. Hyperparameter Sweep:**~~
+Die aktuell fixierten Parameter könnten besser abgestimmt werden.
 
-  **5. Visualisierung erweitern**
+~~**5. Visualisierung erweitern**~~
   
+**AUFGABEN ABGESCHLOSSEN*
+
+# 2025/10/11
+# **ZIEL: Vorbereitung auf nächste Modell-Iteration**
+
+# Langfristiges Ziel: 
+Entwicklung eiens emotional-modulierten Lernagenten, der später auf Robotics-Umgebungen übertragen werden kann. 
+
+# **Aktuelleer Stand**
+
+- Emotion-BDH-DQN läuft stabil in CartPole-v1
+  
+- EmotionEngine liefert sinnvolle dynamische Werte (Winner/Loser-Effekte, Boosts)
+
+- σ-Plastizität reagiert auf Emotion (mod-Faktor) und η-Anpassung
+
+- Logging & Visualisierung über plot_utils.py zeigen klare Korrelationen zwischen EMotion, TD_Error und       Reward
+
+# **Geplante Verbesserungen**
+**Adaptive η-Regulierung (Emotion ↔ TD-Error)**
+
+- Lernrate η soll abhängig von akuteller Emotion und TD_Error werden.
+    -> Ziel: feinfühligere Anpassung an gute oder schlechte Lernphasen.
+  
+- **Formel-Ansatz:**
+  
+    **η=η0​⋅(0.3+E)⋅(1−TD_Error/TD_max)*
+
+- **Erwarteter Effekt:** stabileres Lernen, weniger Overreaction bei hohen Fehlern.
 
 
 
+**BDH-σ-Homeostase**
+
+- Neue Kontrollschleife zur Vermeidung von σ-Explosion oder -Verlust
+
+- **ZIEL:** konstante Plastizität über längere Trainingsphasen
 
 
+**Transfer zu realistischeren Umgebungen**
+
+- Nach Stabilisierung: Test auf **MountainCar, Pendulum, oder PyBullet-Reacher*
+- Vorbereitung auf Robotics-Integration (Sensor-INput, Motor-Output)
+
+# Erwartete Forschungsfragen
+
+- Wie stark beeinflusst Emotuion die effektive Exploration (ε-Modulation)?
+- Wie verändert sich die σ-Dynamik bei adaptivem η?
+- Kann der Agent durch emotionale Rückkopplung robustere Policies entwickeln?
+
+**Nächste Aktionen**
+
+- Implementierung adaptiver η-Funktion in train_finetuning.py
+
+- Hinzufügen von σ-Norm-Logging (Homeostase-Überwachung)
+
+- Vorbereitung von Transfer-Tests (MountainCar-v0)
+
+- Vergleich der Lernkurven (TD-Error / Emotion / σ-Norm)
 
 
 
