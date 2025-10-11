@@ -133,13 +133,13 @@ Entwicklung eiens emotional-modulierten Lernagenten, der später auf Robotics-Um
 
 **Nächste Aktionen**
 
-- Implementierung adaptiver η-Funktion in train_finetuning.py
+- [x] ~~Implementierung adaptiver η-Funktion in train_finetuning.py~~
 
-- Hinzufügen von σ-Norm-Logging (Homeostase-Überwachung)
+- [x] ~~Hinzufügen von σ-Norm-Logging (Homeostase-Überwachung)~~
 
-- Vorbereitung von Transfer-Tests (MountainCar-v0)
+- [x] ~~Vorbereitung von Transfer-Tests (MountainCar-v0)~~
 
-- Vergleich der Lernkurven (TD-Error / Emotion / σ-Norm)
+- [x] ~~Vergleich der Lernkurven (TD-Error / Emotion / σ-Norm)~~
 
 
 
