@@ -1,0 +1,62 @@
+{
+  "CartPole-v1": {
+    "env_name": "CartPole-v1",
+    "support_avg": 22.0,
+    "adaptation_avg": 21.6,
+    "improvement": -0.3999999999999986,
+    "stability": 0.960654399866287,
+    "correlation": 0.05409364511918743,
+    "emotion_params": {
+      "alpha": 0.09326966106891632,
+      "initial_emotion": 0.5178866386413574
+    }
+  },
+  "Acrobot-v1": {
+    "env_name": "Acrobot-v1",
+    "support_avg": -500.0,
+    "adaptation_avg": -500.0,
+    "improvement": 0.0,
+    "stability": 0.9600544210792843,
+    "correlation": NaN,
+    "emotion_params": {
+      "alpha": 0.0946919247508049,
+      "initial_emotion": 0.518372118473053
+    }
+  },
+  "MountainCar-v0": {
+    "env_name": "MountainCar-v0",
+    "support_avg": -200.0,
+    "adaptation_avg": -200.0,
+    "improvement": 0.0,
+    "stability": 0.9602661940132811,
+    "correlation": NaN,
+    "emotion_params": {
+      "alpha": 0.09418991208076477,
+      "initial_emotion": 0.518287181854248
+    }
+  },
+  "Pendulum-v1": {
+    "env_name": "Pendulum-v1",
+    "support_avg": -1176.827512649972,
+    "adaptation_avg": -1114.7801374510384,
+    "improvement": 62.04737519893365,
+    "stability": 0.9602149189328373,
+    "correlation": 0.022467465741958292,
+    "emotion_params": {
+      "alpha": 0.09431146085262299,
+      "initial_emotion": 0.5157639384269714
+    }
+  },
+  "MountainCarContinuous-v0": {
+    "env_name": "MountainCarContinuous-v0",
+    "support_avg": -16.602101442828257,
+    "adaptation_avg": -16.46584775614661,
+    "improvement": 0.1362536866816484,
+    "stability": 0.9605203724508545,
+    "correlation": 0.1727993693202839,
+    "emotion_params": {
+      "alpha": 0.09358737617731094,
+      "initial_emotion": 0.5174404978752136
+    }
+  }
+}

@@ -1,0 +1,677 @@
+{
+    "best_parameters": {
+        "learning_rate": 0.05,
+        "emotion_decay": 0.995,
+        "transition_threshold": 0.6,
+        "emotion_intensity": 1.0,
+        "base_quantity": 3.0,
+        "volatility_multiplier": 0.9,
+        "trend_multiplier": 0.9,
+        "max_risk_per_trade": 0.025,
+        "max_daily_loss": 0.05,
+        "target_daily_return": 0.015
+    },
+    "optimization_results": [
+        {
+            "test_id": 1,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.97,
+                "transition_threshold": 0.7,
+                "emotion_intensity": 0.9,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.03,
+                "max_daily_loss": 0.05,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": 0.1907841760240748,
+                "total_trades": 30,
+                "win_rate": 0.4,
+                "max_drawdown": 0.10022440645832885,
+                "final_portfolio_value": 11907.841760240748
+            }
+        },
+        {
+            "test_id": 2,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 0.8,
+                "base_quantity": 6.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": 0.10668538051350715,
+                "total_trades": 40,
+                "win_rate": 0.325,
+                "max_drawdown": 0.13245958968343238,
+                "final_portfolio_value": 11066.853805135072
+            }
+        },
+        {
+            "test_id": 3,
+            "parameters": {
+                "learning_rate": 0.02,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 1.0,
+                "base_quantity": 4.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 1.3,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.06,
+                "target_daily_return": 0.025
+            },
+            "performance": {
+                "total_return": 0.040585234613277864,
+                "total_trades": 35,
+                "win_rate": 0.5714285714285714,
+                "max_drawdown": 0.22945439417561667,
+                "final_portfolio_value": 10405.852346132779
+            }
+        },
+        {
+            "test_id": 4,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 1.1,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.06,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": -0.05520112263758001,
+                "total_trades": 45,
+                "win_rate": 0.5111111111111111,
+                "max_drawdown": 0.1535703112164727,
+                "final_portfolio_value": 9447.9887736242
+            }
+        },
+        {
+            "test_id": 5,
+            "parameters": {
+                "learning_rate": 0.01,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.3,
+                "emotion_intensity": 1.1,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.7,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.03,
+                "max_daily_loss": 0.06,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": 0.20580628129805045,
+                "total_trades": 30,
+                "win_rate": 0.23333333333333334,
+                "max_drawdown": 0.046352440017122534,
+                "final_portfolio_value": 12058.062812980505
+            }
+        },
+        {
+            "test_id": 6,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.99,
+                "transition_threshold": 0.5,
+                "emotion_intensity": 0.8,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.7,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": 0.24275921797160008,
+                "total_trades": 47,
+                "win_rate": 0.3617021276595745,
+                "max_drawdown": 0.0770795644078735,
+                "final_portfolio_value": 12427.592179716
+            }
+        },
+        {
+            "test_id": 7,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.99,
+                "transition_threshold": 0.3,
+                "emotion_intensity": 1.0,
+                "base_quantity": 7.0,
+                "volatility_multiplier": 0.7,
+                "trend_multiplier": 0.5,
+                "max_risk_per_trade": 0.03,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": 0.11957068174189481,
+                "total_trades": 18,
+                "win_rate": 0.1111111111111111,
+                "max_drawdown": 0.002218267820688743,
+                "final_portfolio_value": 11195.706817418948
+            }
+        },
+        {
+            "test_id": 8,
+            "parameters": {
+                "learning_rate": 0.01,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.7,
+                "emotion_intensity": 1.0,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 1.1,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.05,
+                "target_daily_return": 0.02
+            },
+            "performance": {
+                "total_return": -0.1953344398905193,
+                "total_trades": 41,
+                "win_rate": 0.4634146341463415,
+                "max_drawdown": 0.19948834472727667,
+                "final_portfolio_value": 8046.655601094807
+            }
+        },
+        {
+            "test_id": 9,
+            "parameters": {
+                "learning_rate": 0.02,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 1.2,
+                "base_quantity": 6.0,
+                "volatility_multiplier": 1.1,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.01,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": -0.1515200323588231,
+                "total_trades": 3,
+                "win_rate": 0.3333333333333333,
+                "max_drawdown": 0.15306760775337935,
+                "final_portfolio_value": 8484.799676411769
+            }
+        },
+        {
+            "test_id": 10,
+            "parameters": {
+                "learning_rate": 0.01,
+                "emotion_decay": 0.97,
+                "transition_threshold": 0.3,
+                "emotion_intensity": 1.0,
+                "base_quantity": 6.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.025,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.025
+            },
+            "performance": {
+                "total_return": 0.18023672143645453,
+                "total_trades": 31,
+                "win_rate": 0.41935483870967744,
+                "max_drawdown": 0.11460932008065501,
+                "final_portfolio_value": 11802.367214364545
+            }
+        },
+        {
+            "test_id": 11,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.6,
+                "emotion_intensity": 1.0,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.9,
+                "trend_multiplier": 1.3,
+                "max_risk_per_trade": 0.01,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.025
+            },
+            "performance": {
+                "total_return": -0.02583342017303439,
+                "total_trades": 34,
+                "win_rate": 0.4411764705882353,
+                "max_drawdown": 0.003435801811121564,
+                "final_portfolio_value": 9741.665798269656
+            }
+        },
+        {
+            "test_id": 12,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.99,
+                "transition_threshold": 0.6,
+                "emotion_intensity": 0.9,
+                "base_quantity": 7.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.01,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.02
+            },
+            "performance": {
+                "total_return": 0.20706367747273072,
+                "total_trades": 44,
+                "win_rate": 0.45454545454545453,
+                "max_drawdown": 0.019472283435874094,
+                "final_portfolio_value": 12070.636774727307
+            }
+        },
+        {
+            "test_id": 13,
+            "parameters": {
+                "learning_rate": 0.01,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 0.8,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.5,
+                "trend_multiplier": 0.5,
+                "max_risk_per_trade": 0.01,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": -0.15622416361415417,
+                "total_trades": 37,
+                "win_rate": 0.21621621621621623,
+                "max_drawdown": 0.1357773205828012,
+                "final_portfolio_value": 8437.758363858458
+            }
+        },
+        {
+            "test_id": 14,
+            "parameters": {
+                "learning_rate": 0.05,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.5,
+                "emotion_intensity": 1.2,
+                "base_quantity": 4.0,
+                "volatility_multiplier": 0.9,
+                "trend_multiplier": 1.3,
+                "max_risk_per_trade": 0.03,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": 0.00557575138648499,
+                "total_trades": 42,
+                "win_rate": 0.5714285714285714,
+                "max_drawdown": 0.09727505961098196,
+                "final_portfolio_value": 10055.75751386485
+            }
+        },
+        {
+            "test_id": 15,
+            "parameters": {
+                "learning_rate": 0.05,
+                "emotion_decay": 0.999,
+                "transition_threshold": 0.5,
+                "emotion_intensity": 0.9,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.015
+            },
+            "performance": {
+                "total_return": 0.3055174904238496,
+                "total_trades": 43,
+                "win_rate": 0.37209302325581395,
+                "max_drawdown": 0.07074544111304185,
+                "final_portfolio_value": 13055.174904238496
+            }
+        },
+        {
+            "test_id": 16,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.99,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 1.0,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 0.7,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.02,
+                "max_daily_loss": 0.04,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": -0.22875236625830203,
+                "total_trades": 46,
+                "win_rate": 0.45652173913043476,
+                "max_drawdown": 0.11516016516508877,
+                "final_portfolio_value": 7712.47633741698
+            }
+        },
+        {
+            "test_id": 17,
+            "parameters": {
+                "learning_rate": 0.02,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.7,
+                "emotion_intensity": 1.1,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 1.1,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.05,
+                "target_daily_return": 0.005
+            },
+            "performance": {
+                "total_return": -0.07827949163733938,
+                "total_trades": 17,
+                "win_rate": 0.17647058823529413,
+                "max_drawdown": 0.006869095876280019,
+                "final_portfolio_value": 9217.205083626606
+            }
+        },
+        {
+            "test_id": 18,
+            "parameters": {
+                "learning_rate": 0.02,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.6,
+                "emotion_intensity": 1.1,
+                "base_quantity": 4.0,
+                "volatility_multiplier": 0.5,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.02
+            },
+            "performance": {
+                "total_return": 0.060869231404018134,
+                "total_trades": 38,
+                "win_rate": 0.39473684210526316,
+                "max_drawdown": 0.05148820366112923,
+                "final_portfolio_value": 10608.692314040181
+            }
+        },
+        {
+            "test_id": 19,
+            "parameters": {
+                "learning_rate": 0.01,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.5,
+                "emotion_intensity": 1.0,
+                "base_quantity": 6.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.02,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": 0.08815724865502561,
+                "total_trades": 18,
+                "win_rate": 0.2777777777777778,
+                "max_drawdown": 0.0871680910731764,
+                "final_portfolio_value": 10881.572486550256
+            }
+        },
+        {
+            "test_id": 20,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.97,
+                "transition_threshold": 0.3,
+                "emotion_intensity": 1.0,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 0.9,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.02,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.025
+            },
+            "performance": {
+                "total_return": 0.15016731193040214,
+                "total_trades": 30,
+                "win_rate": 0.43333333333333335,
+                "max_drawdown": 0.11762948018904935,
+                "final_portfolio_value": 11501.673119304021
+            }
+        },
+        {
+            "test_id": 21,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.7,
+                "emotion_intensity": 0.8,
+                "base_quantity": 4.0,
+                "volatility_multiplier": 1.1,
+                "trend_multiplier": 1.3,
+                "max_risk_per_trade": 0.025,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.015
+            },
+            "performance": {
+                "total_return": 0.0011725614768423839,
+                "total_trades": 30,
+                "win_rate": 0.4666666666666667,
+                "max_drawdown": 0.03782230779465399,
+                "final_portfolio_value": 10011.725614768424
+            }
+        },
+        {
+            "test_id": 22,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.97,
+                "transition_threshold": 0.3,
+                "emotion_intensity": 1.2,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.5,
+                "trend_multiplier": 1.3,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.05,
+                "target_daily_return": 0.02
+            },
+            "performance": {
+                "total_return": 0.0331372464297714,
+                "total_trades": 55,
+                "win_rate": 0.5636363636363636,
+                "max_drawdown": 0.2848584687181252,
+                "final_portfolio_value": 10331.372464297714
+            }
+        },
+        {
+            "test_id": 23,
+            "parameters": {
+                "learning_rate": 0.05,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 1.2,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 1.1,
+                "trend_multiplier": 1.3,
+                "max_risk_per_trade": 0.015,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": -0.049481557531135874,
+                "total_trades": 26,
+                "win_rate": 0.46153846153846156,
+                "max_drawdown": 0.01695436837275138,
+                "final_portfolio_value": 9505.184424688641
+            }
+        },
+        {
+            "test_id": 24,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.999,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 0.8,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.9,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.03,
+                "max_daily_loss": 0.06,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": -0.01777805101818303,
+                "total_trades": 40,
+                "win_rate": 0.475,
+                "max_drawdown": 0.0960620629160489,
+                "final_portfolio_value": 9822.21948981817
+            }
+        },
+        {
+            "test_id": 25,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.99,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 0.8,
+                "base_quantity": 7.0,
+                "volatility_multiplier": 0.3,
+                "trend_multiplier": 1.1,
+                "max_risk_per_trade": 0.03,
+                "max_daily_loss": 0.07,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": -0.13775168290502024,
+                "total_trades": 32,
+                "win_rate": 0.4375,
+                "max_drawdown": 0.08870519841899732,
+                "final_portfolio_value": 8622.483170949798
+            }
+        },
+        {
+            "test_id": 26,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.95,
+                "transition_threshold": 0.6,
+                "emotion_intensity": 1.2,
+                "base_quantity": 4.0,
+                "volatility_multiplier": 0.7,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.01,
+                "max_daily_loss": 0.06,
+                "target_daily_return": 0.015
+            },
+            "performance": {
+                "total_return": 0.014319270716501159,
+                "total_trades": 48,
+                "win_rate": 0.3541666666666667,
+                "max_drawdown": 0.30076337850075907,
+                "final_portfolio_value": 10143.192707165012
+            }
+        },
+        {
+            "test_id": 27,
+            "parameters": {
+                "learning_rate": 0.02,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.4,
+                "emotion_intensity": 0.8,
+                "base_quantity": 4.0,
+                "volatility_multiplier": 0.5,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.02,
+                "max_daily_loss": 0.04,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": -0.07552659863501886,
+                "total_trades": 32,
+                "win_rate": 0.28125,
+                "max_drawdown": 0.02993089033839251,
+                "final_portfolio_value": 9244.734013649811
+            }
+        },
+        {
+            "test_id": 28,
+            "parameters": {
+                "learning_rate": 0.05,
+                "emotion_decay": 0.995,
+                "transition_threshold": 0.6,
+                "emotion_intensity": 1.0,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.9,
+                "trend_multiplier": 0.9,
+                "max_risk_per_trade": 0.025,
+                "max_daily_loss": 0.05,
+                "target_daily_return": 0.015
+            },
+            "performance": {
+                "total_return": 0.561768298117226,
+                "total_trades": 42,
+                "win_rate": 0.40476190476190477,
+                "max_drawdown": 0.017012785174618874,
+                "final_portfolio_value": 15617.68298117226
+            }
+        },
+        {
+            "test_id": 29,
+            "parameters": {
+                "learning_rate": 0.03,
+                "emotion_decay": 0.999,
+                "transition_threshold": 0.3,
+                "emotion_intensity": 0.8,
+                "base_quantity": 5.0,
+                "volatility_multiplier": 0.7,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.025,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.01
+            },
+            "performance": {
+                "total_return": 0.12087766149885047,
+                "total_trades": 35,
+                "win_rate": 0.22857142857142856,
+                "max_drawdown": 0.3029896330136221,
+                "final_portfolio_value": 11208.776614988505
+            }
+        },
+        {
+            "test_id": 30,
+            "parameters": {
+                "learning_rate": 0.04,
+                "emotion_decay": 0.99,
+                "transition_threshold": 0.7,
+                "emotion_intensity": 1.2,
+                "base_quantity": 3.0,
+                "volatility_multiplier": 0.5,
+                "trend_multiplier": 0.7,
+                "max_risk_per_trade": 0.02,
+                "max_daily_loss": 0.03,
+                "target_daily_return": 0.015
+            },
+            "performance": {
+                "total_return": -0.1633033839664682,
+                "total_trades": 55,
+                "win_rate": 0.4,
+                "max_drawdown": 0.261545428822308,
+                "final_portfolio_value": 8366.966160335318
+            }
+        }
+    ],
+    "timestamp": "2025-10-18T15:52:14.945277"
+}

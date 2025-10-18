@@ -1,0 +1,23 @@
+{
+  "CartPole-v1": {
+    "alpha": 0.09328203648328781,
+    "initial_emotion": 0.5180342793464661,
+    "stability": 0.9745560527475212,
+    "correlation": 0.232348023101072,
+    "forgetting": 1.9636419892776757e-05
+  },
+  "Acrobot-v1": {
+    "alpha": 0.0947142094373703,
+    "initial_emotion": 0.5183218121528625,
+    "stability": 0.9741654080481355,
+    "correlation": NaN,
+    "forgetting": 1.7571752323419787e-05
+  },
+  "MountainCar-v0": {
+    "alpha": 0.09419196099042892,
+    "initial_emotion": 0.5182911157608032,
+    "stability": 0.9743078584323425,
+    "correlation": NaN,
+    "forgetting": 5.615179077267385e-08
+  }
+}

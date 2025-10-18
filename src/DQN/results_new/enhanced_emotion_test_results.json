@@ -1,0 +1,220 @@
+{
+  "enhanced_results": {
+    "improving": {
+      "stability": 0.9460000000000001,
+      "correlation": 0.5222329678670935,
+      "emotion_range": 0.17999999999999994,
+      "state_diversity": 0.3,
+      "emotion_history": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.6799999999999999
+      ],
+      "emotion_states": [
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "BALANCED"
+      ],
+      "scores": [
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55
+      ]
+    },
+    "declining": {
+      "stability": 0.9662500000084375,
+      "correlation": 0.5222329678670935,
+      "emotion_range": 0.11249999997187499,
+      "state_diversity": 0.2,
+      "emotion_history": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.387500000028125
+      ],
+      "emotion_states": [
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS"
+      ],
+      "scores": [
+        50,
+        45,
+        40,
+        35,
+        30,
+        25,
+        20,
+        15,
+        10,
+        5
+      ]
+    },
+    "volatile": {
+      "stability": 1.0,
+      "correlation": NaN,
+      "emotion_range": 0.0,
+      "state_diversity": 0.2,
+      "emotion_history": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "emotion_states": [
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS"
+      ],
+      "scores": [
+        20,
+        5,
+        30,
+        10,
+        40,
+        15,
+        35,
+        8,
+        45,
+        12
+      ]
+    },
+    "stable": {
+      "stability": 1.0,
+      "correlation": NaN,
+      "emotion_range": 0.0,
+      "state_diversity": 0.2,
+      "emotion_history": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "emotion_states": [
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "INITIALIZING",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS",
+        "CAUTIOUS"
+      ],
+      "scores": [
+        25,
+        24,
+        26,
+        25,
+        24,
+        26,
+        25,
+        24,
+        26,
+        25
+      ]
+    }
+  },
+  "comparison_results": {
+    "old": {
+      "stability": 0.9211904986692594,
+      "correlation": 0.14892682682400868,
+      "emotion_range": 0.29999999999999993,
+      "emotions": [
+        0.5,
+        0.5,
+        0.4,
+        0.30000000000000004,
+        0.20000000000000004,
+        0.30000000000000004,
+        0.4,
+        0.30000000000000004,
+        0.4,
+        0.30000000000000004,
+        0.4,
+        0.30000000000000004,
+        0.4,
+        0.30000000000000004,
+        0.4,
+        0.30000000000000004
+      ]
+    },
+    "enhanced": {
+      "stability": 0.928457945299576,
+      "correlation": 0.4400540554276168,
+      "emotion_range": 0.21492753613532678,
+      "emotions": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.549999999975,
+        0.549999999975,
+        0.6166666666108025,
+        0.6166666666108025,
+        0.6949275361419934,
+        0.7149275361353268
+      ]
+    }
+  }
+}

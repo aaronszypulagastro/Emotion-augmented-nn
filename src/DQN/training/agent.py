@@ -5,10 +5,20 @@
 
 # IMPORTS 
 from __future__ import annotations
-from core.emotion_engine import EmotionEngine
 from argparse import _ActionsContainer
 from typing import Deque, Tuple, List
 from dataclasses import dataclass
+
+# Emotion Engine Import mit Fallback
+try:
+    from ..core.emotion_engine import EmotionEngine
+except ImportError:
+    import os as _os, sys as _sys
+    _CURR = _os.path.dirname(_os.path.abspath(__file__))
+    _PKG_ROOT = _os.path.abspath(_os.path.join(_CURR, ".."))
+    if _PKG_ROOT not in _sys.path:
+        _sys.path.insert(0, _PKG_ROOT)
+    from core.emotion_engine import EmotionEngine
 
 import copy 
 import torch 
@@ -105,28 +115,63 @@ class QNetwork(nn.Module):
         self.fc2.reset_plasticity()
 
 # REPLAY BUFFER (speichert Erfahrungen)
-class ReplayBuffer:
-    def __init__(self, capacity: int):   # Ringpuffer mit max. Kapazität
-        
-        self.buffer: Deque[Tuple[np.ndarray, int, float, np.ndarray,
-        bool]] = collections.deque(maxlen=capacity)
+class PrioritizedReplayBuffer:
+    def __init__(self, capacity: int, alpha: float = 0.5):
+        self.capacity = int(capacity)
+        self.alpha = float(alpha)
+        self.pos = 0
+        self.size = 0
+        self.states = [None] * self.capacity
+        self.actions = np.zeros((self.capacity,), dtype=np.int64)
+        self.rewards = np.zeros((self.capacity,), dtype=np.float32)
+        self.next_states = [None] * self.capacity
+        self.dones = np.zeros((self.capacity,), dtype=np.float32)
+        self.priorities = np.zeros((self.capacity,), dtype=np.float32)
+        self.max_priority = 1.0
 
-    def push(self, state: np.ndarray, ip: float,     
-        action: int,
-        reward: float, 
-        next_state: np.ndarray, 
-        done: bool) -> None:  
-        # Erfahrung speichern
-        self.buffer.append((state, action, reward, next_state, done))
-    
-    def sample(self, batch_size): 
-        # zufällige Stichprobe von Erfahrungen
-        batch = random.sample(self.buffer, batch_size)
-        states, actions, rewards, next_states, done = zip(*batch)
-        return states, actions, rewards, next_states, done
-    
-    def __len__(self) -> int:  # Anzahl der gespeicherten Erfahrungen
-        return len(self.buffer)
+    def push(self, state: np.ndarray, action: int, reward: float, next_state: np.ndarray, done: bool) -> None:
+        idx = self.pos
+        self.states[idx] = np.array(state, copy=False)
+        self.actions[idx] = int(action)
+        self.rewards[idx] = float(reward)
+        self.next_states[idx] = np.array(next_state, copy=False)
+        self.dones[idx] = 1.0 if done else 0.0
+        self.priorities[idx] = self.max_priority
+        self.pos = (self.pos + 1) % self.capacity
+        self.size = min(self.size + 1, self.capacity)
+
+    def sample(self, batch_size: int, beta: float = 0.4):
+        assert self.size > 0
+        prios = self.priorities[:self.size]
+        probs = prios ** self.alpha
+        probs_sum = probs.sum()
+        if probs_sum <= 0:
+            probs = np.ones_like(probs) / len(probs)
+        else:
+            probs = probs / probs_sum
+        indices = np.random.choice(self.size, size=batch_size, replace=self.size < batch_size, p=probs)
+        # IS Weights
+        N = self.size
+        weights = (N * probs[indices]) ** (-beta)
+        weights = weights / (weights.max() + 1e-6)
+
+        states = np.stack([self.states[i] for i in indices], axis=0)
+        actions = self.actions[indices]
+        rewards = self.rewards[indices]
+        next_states = np.stack([self.next_states[i] for i in indices], axis=0)
+        dones = self.dones[indices]
+        return indices, states, actions, rewards, next_states, dones, weights
+
+    def update_priorities(self, indices: np.ndarray, priorities: np.ndarray):
+        priorities = np.asarray(priorities, dtype=np.float32)
+        priorities = np.clip(priorities, 1e-6, 1e6)
+        for idx, pr in zip(indices, priorities):
+            self.priorities[int(idx)] = pr
+            if pr > self.max_priority:
+                self.max_priority = float(pr)
+
+    def __len__(self) -> int:
+        return self.size
 
 # DQN AGENT (wählt Aktionen und lernt)
 class DQNConfig:
@@ -148,7 +193,7 @@ class DQNConfig:
     plastic_eta: float = 5e-4               # Lernrate σ
     plastic_decay: float = 0.997            # Homeostase (σ-LEck)
     plastic_clip: float = 0.1               # numerische Begrenzung 
-    plastic_in_inference: bool = False       # optional 
+    plastic_in_inference: bool = False      # optional 
     plastic_eta_infer: float = 2e-4         # kleinere Rate in Inferenz 
 
 class DQNAgent:    # Agent-Parameter
@@ -179,10 +224,19 @@ class DQNAgent:    # Agent-Parameter
         self.target_network.load_state_dict(self.q_network.state_dict())  # Stabilere Targets 
         
         self.optimizer = optim.AdamW(self.q_network.parameters(), lr=self.cfg.lr) 
-        self.loss_fn = nn.SmoothL1Loss()
+        # Robuster Q-Loss (Huber)
+        self.loss_fn = nn.SmoothL1Loss(beta=1.0)
 
-        self.replay_buffer: Deque[Tuple[np.ndarray, int, float, np.ndarray, bool]] = \
-            collections.deque(maxlen=self.cfg.replay_capacity)
+        # Prioritized Replay Buffer
+        self.prioritized_alpha = 0.5
+        self.prioritized_beta_start = 0.4
+        self.prioritized_beta_frames = 100000
+        self.replay_buffer = PrioritizedReplayBuffer(self.cfg.replay_capacity, alpha=self.prioritized_alpha)
+
+        # N-step settings
+        self.n_step = 2
+        self._nstep_queue = collections.deque(maxlen=self.n_step)
+        self._frame_idx = 0
         
         # ε-greedy: startet hoch (viel Exploration), wird dann immer kleiner 
         self.epsilon = float(self.cfg.epsilon_start)
@@ -220,7 +274,7 @@ class DQNAgent:    # Agent-Parameter
 
     def _emotion_gain(self) -> float:
         """
-        g(E): Mappt deinen Emotionswert (z.B. 0..1) auf einen Multiplikator ~ [0.8 .. 1.2]
+        g(E): Mappt Emotionswert (z.B. 0..1) auf einen Multiplikator ~ [0.8 .. 1.2]
         Robust gegen None/Fehler.
         """
         if not hasattr(self, "emotion_enabled") or not self.emotion_enabled or self.emotion is None:
@@ -237,8 +291,32 @@ class DQNAgent:    # Agent-Parameter
         return float(np.clip(gain, 0.7, 1.3))
 
 
+    def _make_nstep_transition(self):
+        # Aggregiere n-step Rückgabe aus Queue
+        R = 0.0
+        gamma = self.cfg.gamma
+        next_state_n = None
+        done_n = 0.0
+        for i, (s, a, r, ns, d) in enumerate(self._nstep_queue):
+            R += (gamma ** i) * float(r)
+            next_state_n = ns
+            done_n = 1.0 if d else done_n
+            if d:
+                break
+        state0, action0 = self._nstep_queue[0][0], self._nstep_queue[0][1]
+        return state0, action0, R, next_state_n, bool(done_n)
+
     def push(self, state, action, reward, next_state, done):
-        self.replay_buffer.append((state, action, reward, next_state, done))
+        # N-step Aggregation
+        self._nstep_queue.append((state, action, reward, next_state, done))
+        if len(self._nstep_queue) == self.n_step or done:
+            s0, a0, Rn, nsn, dn = self._make_nstep_transition()
+            self.replay_buffer.push(s0, a0, Rn, nsn, dn)
+            # Falls nicht done, pop erstes Element weiterlaufen; bei done leeren
+            if not done:
+                self._nstep_queue.popleft()
+            else:
+                self._nstep_queue.clear()
 
     def __len__(self):
         return len(self.replay_buffer)
@@ -295,18 +373,22 @@ class DQNAgent:    # Agent-Parameter
                 tp.data.mul_(1.0 - tau).add_(tau * p.data)
 
     def update(self) -> None:
-        # NUr lernen, wenn genug Erfahrungen gesammelt wurden
+        # Schrittzähler für β-Annealing
+        self._frame_idx += 1
+        # Nur lernen, wenn genug Erfahrungen gesammelt wurden
         if len(self.replay_buffer) < self.cfg.learn_starts:
             return
 
         for _ in range(self.cfg.updates_per_step):
-            states, actions, rewards, next_states, dones = self.sample(self.cfg.batch_size)
+            beta = min(1.0, self.prioritized_beta_start + (1.0 - self.prioritized_beta_start) * (self._frame_idx / max(1, self.prioritized_beta_frames)))
+            idxs, states, actions, rewards, next_states, dones, weights = self.replay_buffer.sample(self.cfg.batch_size, beta=beta)
 
-            states      = torch.as_tensor(np.array(states), dtype=torch.float32, device=self.device)
+            states      = torch.as_tensor(states, dtype=torch.float32, device=self.device)
             actions     = torch.as_tensor(actions, dtype=torch.long, device=self.device).unsqueeze(1)
             rewards     = torch.as_tensor(rewards, dtype=torch.float32, device=self.device).unsqueeze(1)
-            next_states = torch.as_tensor(np.array(next_states), dtype=torch.float32, device=self.device)
+            next_states = torch.as_tensor(next_states, dtype=torch.float32, device=self.device)
             dones       = torch.as_tensor(dones, dtype=torch.float32, device=self.device).unsqueeze(1)
+            weights_t   = torch.as_tensor(weights, dtype=torch.float32, device=self.device).unsqueeze(1)
         
             # Q-Werte für aktuelle Zustände und Aktionen
             q_values = self.q_network(states).gather(1, actions)
@@ -318,14 +400,24 @@ class DQNAgent:    # Agent-Parameter
                 # Maximale Q-Werte für nächste Zustände aus dem Zielnetzwerk
                 next_q = self.target_network(next_states).gather(1, next_actions)
 
-                # Bellman-Gleichung, aber kein Zuwachs wenn done = 1 (Ende der Episode)
-                target = rewards + self.cfg.gamma * next_q * (1.0 - dones)
+                # N-Step Bellman-Target: R_n + (γ^n) * V(s_{t+n}) für nicht-terminale Sequenzen
+                gamma_n = (self.cfg.gamma ** self.n_step)
+                target = rewards + gamma_n * next_q * (1.0 - dones)
 
-            # Verlust berechnen (MSE)
-            loss = self.loss_fn(q_values, target)
-            #einfachen mittleren Reward und TD Error berechnen
+            # Verlust berechnen (Huber, per-sample)
+            self.loss_fn.reduction = 'none'
+            loss_per_sample = self.loss_fn(q_values, target)
+            loss = (loss_per_sample * weights_t).mean()
+            # σ-Regularisierung (falls vorhanden) zur Stabilisierung der BDH-Layer
+            sigma_reg = 0.0
+            if hasattr(self.q_network, 'fc1') and hasattr(self.q_network, 'fc2'):
+                if hasattr(self.q_network.fc1, 'sigma') and hasattr(self.q_network.fc2, 'sigma'):
+                    sigma_reg = 1e-5 * (self.q_network.fc1.sigma.pow(2).mean() + self.q_network.fc2.sigma.pow(2).mean())
+            loss = loss + sigma_reg
+            # einfachen mittleren Reward und TD Error berechnen
+            td_errors = (target.detach() - q_values.detach()).abs()
             mean_reward = rewards.mean().item()
-            td_error = (target - q_values).abs().mean().item()
+            td_error = td_errors.mean().item()
 
             if self.emotion_enabled and self.emotion is not None:
                 try: 
@@ -337,8 +429,14 @@ class DQNAgent:    # Agent-Parameter
             # Backpropagation und Optimierung
             self.optimizer.zero_grad()
             loss.backward()
-            nn.utils.clip_grad_norm_(self.q_network.parameters(), self.cfg.grad_clip)
+            # Strengeres Gradient Clipping für stabilere Updates
+            nn.utils.clip_grad_norm_(self.q_network.parameters(), 5.0)
             self.optimizer.step()
+
+            # Prioritäten aktualisieren
+            with torch.no_grad():
+                new_prios = td_errors.squeeze(1).clamp_min(1e-6).cpu().numpy()
+                self.replay_buffer.update_priorities(idxs, new_prios)
             
             # BDH-artige Plastizität mit Emotions-Modulation 
             with torch.no_grad():
@@ -359,3 +457,9 @@ class DQNAgent:    # Agent-Parameter
             self.target_network.load_state_dict(self.q_network.state_dict()) 
             
   
+    def on_episode_end(self):
+        # Restliche n-step Übergänge flushen
+        while len(self._nstep_queue) > 0:
+            s0, a0, Rn, nsn, dn = self._make_nstep_transition()
+            self.replay_buffer.push(s0, a0, Rn, nsn, dn)
+            self._nstep_queue.popleft()

@@ -1,0 +1,16 @@
+{
+  "baseline_results": {
+    "final_avg_score": -96.38,
+    "best_episode": 286.83,
+    "final_emotion": 0.726,
+    "final_mindset": "CONFIDENT",
+    "training_time": 30.1,
+    "emotion_stability": 0.042,
+    "win_rate": 50.2,
+    "progress_percent": -48.2,
+    "episodes": 2000,
+    "target_score": 200,
+    "description": "Baseline Rainbow DQN + Emotion Engine on LunarLander-v3",
+    "timestamp": "2025-10-17T12:00:00Z"
+  }
+}
